@@ -13,17 +13,12 @@ import java.util.Scanner;
  */
 public class ModeloEconomico {
 
-    /**
-     * @param A
-     * @param b
-     * @param args the command line arguments
-     * @return 
-     */
+   
     public static double[] gauss(double[][] A, double[] b){
        
-       //ETAPA DE ESCALONAMENTO
+       
         for (int k = 0; k < A.length - 1; k++) {
-            //procura o maior k-ésimo coeficiente em módulo
+            
             double max = Math.abs(A[k][k]);
             int maxIndex = k;            
             for (int i = k + 1; i < A.length; i++) {
@@ -33,10 +28,7 @@ public class ModeloEconomico {
                 }
             }
             if (maxIndex != k) {
-                /*
-                troca a equação k pela equação com o
-                maior k-ésimo coeficiente em módulo
-                */
+                
                 for (int j = 0; j < A.length; j++) {
                     double temp = A[k][j];
                     A[k][j] = A[maxIndex][j];
@@ -46,12 +38,11 @@ public class ModeloEconomico {
                 b[k] = b[maxIndex];
                 b[maxIndex] = temp;
             }
-            //Se A[k][k] é zero, então a matriz dos coeficiente é singular
-            //det A = 0
+           
             if (A[k][k] == 0) {
                 return null;
             } else {
-                //realiza o escalonamento
+               
                 for (int m = k + 1; m < A.length; m++) {
                     double F = -A[m][k] / A[k][k];
                     A[m][k] = 0; //evita uma iteração
@@ -62,7 +53,7 @@ public class ModeloEconomico {
                 }
             }
         }
-        //ETAPA DE RESOLUÇÃO DO SISTEMA
+        
         double[] X = new double[A.length];
         for (int i = A.length - 1; i >= 0; i--) {
             X[i] = b[i];
@@ -76,7 +67,7 @@ public class ModeloEconomico {
     
     public static void main(String[] args) {
         
-        // TODO code application logic here
+        
         double matriz[][] = new double[3][3];
         Scanner ler = new Scanner(System.in);
         double resultado[] = new double[3];
